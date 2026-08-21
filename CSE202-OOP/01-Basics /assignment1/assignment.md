@@ -97,7 +97,7 @@ public:
 * `displayStatus()`
 * `takeDamage()`
 * `increaseScore()`
-* `heal()`
+* `heal()` // max health 10
 * `levelUp()`
 
 ### 2️⃣ Enemy Class
