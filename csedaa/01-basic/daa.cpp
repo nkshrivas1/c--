@@ -74,3 +74,39 @@ int main(){
     }
     return 0;
 }
+
+int partition(vector<int>& arr,int low,int high){
+     int pivot = arr[high];
+     int i = low;
+     for(int j=low;j<high;j++){
+        if(arr[j] <= pivot){
+            swap(arr[i],arr[j]);
+            i++;
+        }
+     }
+     swap(arr[i],arr[high]);
+     return i;
+}
+/*
+QUICKSELECT(A,low,high,target)
+if low == high
+    return A[low]
+pivotIndex = PARTITION(A,low,high)
+if pivotIndex == target
+    return A[pivotIndex]
+else if target < pivotIndex
+   return quickselect(A,low,pivotIndex-1,target)
+else 
+search right side=>
+   return quickselect(A,pivotIndex+1,high,target)
+ 
+
+*/
+
+
+
+
+
+
+
+
