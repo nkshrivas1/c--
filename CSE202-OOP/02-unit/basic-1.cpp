@@ -320,9 +320,34 @@ int main()
 
         int x = 70;
         int* ptr;
+        // cout<<*ptr;//unpredictable-wild pointer
+        ptr=nullptr;// can be checked
+        // dangling Pointer
+        int *dp = new int(50);
+        int **pp = &dp;
+        // cout << *pp<<"before delete "<< **pp <<endl;
+        delete dp;
+        dp=nullptr;
+        // cout<< *dp <<" after delete " << dp<<endl;
+        int c = 10;
+        // int *i = &c;
+        // int **ii = &i;
+        // **ii = 100;
+        // cout<< c;
+        //void pointer
+        // a void can store the address of an 
+        // object of different types , but it does not
+        //  carry the  pointed to tyoe info needed
+        //  to normal dereferencing
+    void *vp= &c;
+    // cout << *vp;
+    cout << *(static_cast<int*>(vp));
+// "void* gives flexibility, but it also removes
+//  type safety. Don't use it just because you can."
+
         ptr = &x;
-        cout<< "Address of x: "<<ptr<<endl;
-        cout<< "Value of x: "<<*ptr<<endl;
+        // cout<< "Address of x: "<<ptr<<endl;
+        // cout<< "Value of x: "<<*ptr<<endl;
 
         // References 
         // 1. is an alias or alternative name for an existing variable
@@ -338,8 +363,32 @@ int main()
         int y = 20;
         int& refe = y;
         refe -= 50;
-        cout<<y<<endl;
-
+        // cout<<y<<endl;
+    // Pointer arithmetics
+    int arr[5] = {10,20,30,50,60};
+    int *p = arr;
+    // cout << p <<endl;
+    // cout<< p+1 <<endl;
+    // write a p[rogram to print 
+        // thw value of array using pointer]
+    // arr  =arr+1; X
+    for(int i=0;i<5;i++){
+        *(p+i) = *(p+i) * 2;
+        // cout << *(p+i) << " ";
+    }
+    // using pointer double every element of the array
+// reverse an array using pointers
+// void reverse(int *arr,int n)
+// int l =0; right = n-1;
+// while( left<right){
+//     swap(arr[left],arr[right])
+//     left++;
+//     right--
+// }
+int z = 5;
+int *r = &z;
+*r = 15;
+// cout << z;
 
 
 
