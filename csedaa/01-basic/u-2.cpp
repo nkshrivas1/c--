@@ -23,6 +23,31 @@ using namespace std;
         }
         return lps;
     }
+    void KMPSearch(string text,string pattern){
+        int n= text.length();
+        int m = pattern.length();
+        //step 1. compute LPS
+        vector<int> lps = computeLPS(pattern);
+        int i =0;
+        int j= 0;
+        //step 2.Linear search
+        while(i<n){
+            if(text[i] == pattern[j]){
+                i++;
+                j++;
+            }
+            if( j==m){
+                cout << "Pattern found at index "<< (i-j) << endl;
+                j=lps[j-1];
+            }
+            else if (i<n && text[i]!=pattern[j]){
+                if(j!= 0) j= lps[j-1];
+                else i++;
+            }
+        }
+    }
+    //text = ABABABAB
+    // p = ABAB
     const int q = 101;// modulus // prime 
     //rabin karp algorithm
     void rabinKarp(string text,string pattern){

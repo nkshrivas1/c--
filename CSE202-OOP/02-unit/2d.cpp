@@ -20,12 +20,12 @@ int main(){
     }
     // find the diagonal sum of this matriux]
         int sum =0;
-for(int i =0;i<4;i++){
-        for(int j=0;j<3;j++){
-            if(i==j)
-                sum+=students[i][j];
+        for(int i =0;i<4;i++){
+            for(int j=0;j<3;j++){
+                if(i==j)
+                    sum+=students[i][j];
+            }
         }
-    }
         cout << "Total marks of student "<< sum << endl;
 
 

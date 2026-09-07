@@ -119,12 +119,15 @@ class LL{
             delete temp->next;
             temp->next = nullptr;
         }
+        // find an element in linklist 
+        // 1.findbyvalue 2.findbyposition
         void display(){
             Node* temp = head;
             while(temp!=NULL){
                 cout << temp->data << " -> ";
                 temp = temp->next;
             }
+            cout<<endl;
         }
         int find(int target){
             Node* temp = head;
@@ -136,6 +139,13 @@ class LL{
             }
             return -1;
         }
+        int findAtPos(int k){
+            Node* temp= head;
+            for(int i=0; i<k && temp->next!=nullptr;i++){
+                temp = temp->next;
+            }
+            return temp->data;
+        }// write a funtion to reverse a link list
         int size(){
             Node* temp = head;
             int length=0;
@@ -143,7 +153,18 @@ class LL{
                 length++;
                 temp = temp->next;
             }
-            length;
+            return length;
+        }
+        void reverseList(){
+            Node* curr = head, *prev = nullptr, *next;
+            while(curr!=NULL){
+                    // store next
+                    next = curr->next;
+                    //reverse current next pointer
+                    curr->next = prev;
+                    prev = curr;
+                    curr= next;
+            }
         }
 };
 //write a function to find the size of linked list
@@ -159,11 +180,12 @@ int main(){
     list.insertAtEnd(20);
     list.insertAtBeginning(0);
     // list.display();
-    list.insertAtKPosition(15,0);
-    list.display();
+    list.insertAtKPosition(1,80);
+    // list.display();
     cout<<endl;
-    list.popFront();
+    // list.popFront();
     list.display();
+    cout << list.findAtPos(1)<<endl;
     // Node* n1 = new Node(10);
     // Node* n2 = new Node(20);
     // Node* n3 = new Node(30);
