@@ -155,16 +155,28 @@ class LL{
             }
             return length;
         }
+        
         void reverseList(){
-            Node* curr = head, *prev = nullptr, *next;
-            while(curr!=NULL){
-                    // store next
-                    next = curr->next;
-                    //reverse current next pointer
-                    curr->next = prev;
-                    prev = curr;
-                    curr= next;
+            if( head == NULL || head->next == NULL) return;
+            Node* prev = NULL;
+            Node* curr = head;
+            Node* next = NULL;
+            while(curr != NULL){
+                next = curr->next;
+                curr->next = prev;  
+                prev = curr;
+                curr = next;
             }
+            head = prev;
+        }// write a function to find the mid point of a link list
+        void findMidPoint(){
+            Node* slow = head;
+            Node* fast = head;
+            while(fast != NULL && fast->next != NULL){
+                slow = slow->next;
+                fast = fast->next->next;
+            }
+            cout << "Mid Point: " << slow->data << endl;
         }
 };
 //write a function to find the size of linked list
