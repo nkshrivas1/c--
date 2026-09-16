@@ -72,9 +72,23 @@ class DLL {
             }
             cout << endl;
         }
-
+        //create a node class with data and next for circlular linked list
+        // write a program to delete middleNode of a doubly linked list
+        void deleteMiddleNode(){
+            Node* slow = head;
+            Node* fast = head->next->next;
+            while(fast != nullptr && fast->next != nullptr){
+                slow = slow->next;
+                fast = fast->next->next;    
+            }
+            Node* temp = slow->next;
+            slow->next = temp->next;
+            temp->next->prev = slow;
+            delete temp;
+        }
         //create a destructor
 };
+
 void display(Node* head,bool isReverse=false){
   // write a function to print all element of our linked list in both
 // direction  
