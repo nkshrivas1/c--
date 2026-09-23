@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/nikhil/Desktop/c++/csedaa/01-basic/convex'
+relocations:     []
+...

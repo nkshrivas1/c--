@@ -2,15 +2,72 @@
 // push 20
 // push 30
 // push 40
-//cout <<  pop //40
-//cout <<  pop //30
-//cout << peek //20
+//cout <<  pop 
+//cout <<  pop 
+//cout << peek
+//cout << peek
 // push 50
 // push 60
 // peek
 //isEmpty
 // full stack --
 // capacity
+
+/// create a class stack ,and implement it using array
+class StackArray {
+    int *arr;
+    int top;
+    int capacity;
+public:
+    StackArray(int capacity) {
+        this->capacity = capacity;
+        arr = new int[capacity];
+        top = -1;
+    }
+    void push(int val) {
+        if (top == capacity - 1) {
+            cout << "Stack is full" << endl;
+            return;
+        }
+        arr[++top] = val;
+    }
+    int pop() {
+        if (top == -1) {    
+            cout << "Stack is empty" << endl;
+            return -1;
+        }
+        return arr[top--];
+    }
+    int peek() {
+        if (top == -1) {
+            cout << "Stack is empty" << endl;
+            return -1;      
+        }
+        return arr[top];
+    }
+    //display all elements of our stack without removing it
+        void display() {
+            if (top == -1) {
+                cout << "Stack is empty" << endl;
+                return;
+            }
+            for (int i = top; i >= 0; i--) {
+                cout << arr[i] << endl;
+            }
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
 
 // write a program to implement stack usin g vector
 #include <iostream>
