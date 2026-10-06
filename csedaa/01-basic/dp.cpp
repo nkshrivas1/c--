@@ -44,6 +44,38 @@ int knapsackMemo(vector<int> wt,vector<int> val,
         }
 
     }
+    
+
+
+int knapsackTable(vector<int> wt,vector<int> val,
+    int W,int n){
+        vector<vector<int>> memo(n+1,vector<int>(W+1,0));
+        //wt[] ={1,1,1} w=2 val[]={10,20,30}
+        for(int i=1;i<=n;i++){
+            for( int j =0;j<=W;j++){
+                if( wt[i-1] <= j){
+                    memo[i][j] = max(val[i-1]+memo[i-1][j-wt[i-1]],
+                    memo[i-1][j]);
+                }
+                else{
+                    memo[i][j]= memo[i-1][j];
+                }
+            }
+        }
+        // if(n==0 || w == 0) return 0;
+        // if(memo[n][w] != -1) 
+        //     return memo[n][w];
+        // int pick =0;
+        // if(wt[n-1] <= w){
+        //     pick = val[n-1] + knapsack(wt,val,
+        //         w-wt[n-1],n-1);
+        //     int notPick = knapsack(wt,val,w,n-1);
+
+        //     return memo[n][w]= max(pick,notPick);
+        // }
+
+    }
+    
 
 int knapsack(vector<int> wt,vector<int> val,
     int w,int n){
@@ -58,4 +90,16 @@ int knapsack(vector<int> wt,vector<int> val,
             return max(pick,notPick);
         }
 
+    }
+
+    //Binomial coefficient
+    // number of ways to choose k objects from n objects
+    // n = 4 k =2  A B C D
+    // AB AC AD BC BD CD
+    // n!/k! * (n-k)!
+    int binomial(int n,int k){
+        //base case
+        //m,emoisation
+        if(k==0 || k==n) return 1;
+        return binomial(n-1,k-1)+ binomial(n-1,k);
     }

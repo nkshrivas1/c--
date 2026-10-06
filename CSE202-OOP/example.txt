@@ -1,0 +1,3 @@
+some example data
+This is another test line appended to file
+some example data ag New data 

@@ -36,8 +36,10 @@ class stackll{
             cout << "Stack is empty" << endl;
             return -1;
         }
-        cout << "Top element is: " << top->data << endl;
         return top->data;
+    }
+    bool empty(){
+        return size == 0;
     }
     void display(){
         if(top == nullptr){
@@ -133,9 +135,40 @@ string infixToPrefix(string s){
     reverse(ans.begin(), ans.end());
     return ans;
 }
+// find the next greater element of each element in an array
+//step 1- pop elements from stack that are less than or
+//  equal to the current element
+//step 2 if stack is not empty top element is the NGE
+// pstep 3 push the current element into stack
+void nextGreaterElement(vector<int> &arr){
+    int n = arr.size();
+    vector<int> ans(n,-1);
+    stackll stk;
+    for(int i =n-1;i>=0;i--){
+        while(!stk.empty() && stk.peek() <= arr[i])
+            stk.pop();
+        if(!stk.empty())
+            ans[i]=stk.peek();
+        stk.push(arr[i]);
+    }
+    for(int i=0;i<n;i++){
+        cout << ans[i] << " ";
+    }
+}
 int main(){
-int result = 2 + 3 * 4;
-cout << "Result of 2 + 3 * 4 is: " << result << endl;
+string postfix = infixToPostfix("a+b-c*d/(a-b+c)");
+string prefix = infixToPrefix("a+b-c*d/(a-b+c)");
+
+cout << "Postfix of a+b-c*d/(a-b+c) is: " << postfix << endl;
+cout << "Prefix of a+b-c*d/(a-b+c) is: " << prefix << endl;
+// Postfix of a+b-c*d/(a-b+c) is: ab+cd*ab-c+/-
+// Prefix of a+b-c*d/(a-b+c) is: +a-b*c/d-a+bc
+//step 1 = read the postfix from left to right
+//step 2= if the symbol is an operand , then push it onto stack
+////step 3- if an operator pop two operands and 
+// add the operator before them 
+// string = operator + operand 2 + operand 1;
+// and push string to the stack again
 }
 
 
