@@ -44,6 +44,7 @@ int main(){
     mq.push(30);
     cout<< mq.pop() << endl;
     cout<< mq.pop() << endl;
+    mq.push(80);
     cout<< mq.pop() << endl;
 
     return 0;
