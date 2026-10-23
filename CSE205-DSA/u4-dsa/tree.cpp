@@ -38,7 +38,22 @@ int main(){
             cout<<"Right Child: "<<tree[rightChildIndex]<<" ";
         }
         cout<<endl;
-    }
+    } //1. What is the left-child index for a node at index 3? -- 7
+    //2. Which representation uses child pointers?
+    // a) linked representation ans
+    // b) sequential representation
+    // c) both a and b
+    // 3.Which representation is especially convenient 
+    // for complete binary trees?
+    // a) linked representation
+    // b) sequential representation - correct
+    // 4. What does nullptr mean for a child pointer?
+    // a). The node contains zero
+    // b). No child is connected
+    // c). The tree is full
+    
+
+    //
 
 
     return 0;
