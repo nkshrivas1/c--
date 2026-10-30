@@ -121,6 +121,16 @@ Node* insert(Node* root, int val) {
     return root;
 }
 
+Node* insertRec(Node* root, int val){
+    if(root == NULL) return new Node(val);
+    if(val < root->data)
+        root->left = insertRec(root->left,val);
+    else if( val > root->data)
+        root->right = insertRec(root->right,val);
+
+    return root;
+}
+
 // ==============================================================================================
 // 3. BUILD BST FROM ARRAY
 // ==============================================================================================
@@ -218,6 +228,34 @@ void freeTree(Node* root) {
     freeTree(root->right);
     delete root;
 }
+
+Node* deleteNodes(Node* root, int val){
+    if( root == nullptr) return NULL;
+    //search in the left subtree
+    if( val < root->data)
+        root->left = deleteNodes(root->left,val);
+    //search in the right subtree
+    else if(val > root->data)
+        root->right = deleteNodes(root->right,val);
+    else{
+        // Node has zero or one child
+        if(!root->left || !root->right){
+            Node* temp = root->left ? root->left : root->right;
+            delete root;
+            return temp;
+        }
+        // Node has two children
+        Node* temp = root->right;
+        while(temp->left){
+            temp = temp->left;
+            root->data = temp-> data;
+            root->right = deleteNode(root->right,temp->data);
+        }
+        return root;
+    }
+}
+
+
 
 // ==============================================================================================
 // 6. MAIN FUNCTION & DEMONSTRATION
