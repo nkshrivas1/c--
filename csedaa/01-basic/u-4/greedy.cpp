@@ -222,3 +222,70 @@ int kruskal(int v,vector<vector<int>> adj[]){
     }
     return mstwt;
 }
+
+vector<int> dijkstra(int V,vector<vector<int>> adj[],int S){
+    priority_queue<pair<int,int>,
+        vector<pair<int,int>>,greater<pair<int,int>>> pq;
+    vector<int> dist(V);
+    for(int i=0;i<V;i++) dist[i] = 1e9;
+    dist[S]=0;
+    pq.push({0,S});
+    while(!pq.empty()){
+        int dis = pq.top().first;
+        int node= pq.top().second;
+        pq.pop();
+        for(auto it : adj[node]){
+            int edgeWt = it[1];
+            int adjNode = it[2];
+            if(dis + edgeWt < dist[adjNode]){
+                dist[adjNode] = dis + edgeWt;
+                pq.push({dist[adjNode],adjNode});
+            }
+        }
+    }
+    return dist;
+}
+// Bellman ford algorithm - O(V*E) Time and O(V) space
+// it finds the shortest path from a single source vertex to all 
+// other vertices in a weighted directed graph,it handles negative edge weight 
+// and detects negative weight cycle
+// 1. initialization-source with zero and other with infinity
+// 2. Edge relaxation-repeat the relaxation process V-1 times and update
+//       the distance if smaller than current
+// 3. Negative cycle detection- run one more pass over all edges .
+// if any distance can still be shortenes a negative weight cycle exists
+vector<int> bellmanFord(int V,vector<vector<int>>& edges,int src){
+    vector<int> dist(V,1e8);
+    dist[src] = 0;
+    for(int i=0;i<V;i++){
+        for(vector<int> edge : edges){
+            int u = edge[0];
+            int v = edge[1];
+            int wt=edge[2];
+            if(dist[u] != 1e8 && dist[u] +wt < dist[v]){
+                if(i == V-1) return {-1};
+                dist[v] = dist[u]+wt;
+            }
+        }
+    }
+    return dist;
+}
+//floyd warshell algorithm
+// to determine the shortest path distance between all pair of nodes
+//  in the graph
+
+void floydWarshall(vector<vector<int>> &dist){
+    int V= dist.size();
+    
+    for(int k =0;k<V;k++){
+        for(int i=0;i<V;i++){
+            for(int j =0;j<V;j++){
+                if(dist[i][k] != 1e8 && dist[k][j] != 1e8){
+                    dist[i][j] = min(dist[i][j],
+                        dist[i][k]+dist[k][j]);
+                }
+            }
+
+        }
+    }
+}

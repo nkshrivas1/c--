@@ -137,7 +137,11 @@ int main() {
 
 
 
-    // Counter c1(5);
+    Counter c1(5);
+    ----c1--;
+
+    cout  << "Current value of c1: " << c1.value << endl; // Output: 7
+    c1.display();
     // (++c1).display(); // Prefix increment
     // (c1++).display(); // Postfix increment
     // c1.display(); // Display current value after increments
